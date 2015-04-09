@@ -1,4 +1,4 @@
-package lab3_1;
+package pl.com.bottega.ecommerce.sales.domain.invoicing;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -33,9 +33,8 @@ public class BookKeeperTest {
 		ClientData clientData = new ClientData(Id.generate(), "Arleta");
 		Invoice invoice = new Invoice(Id.generate(), clientData);
 		InvoiceRequest invoiceRequest = new InvoiceRequest(clientData);
-		Money price = new Money(5);
-		ProductData productData = new ProductData(Id.generate(), price, "kanapka", ProductType.FOOD, new Date());
-
+		ProductData productData = new ProductData(Id.generate(), new Money(2), "kanapka", ProductType.FOOD, new Date());
+		RequestItem item = new RequestItem(productData, 0, new Money(5));
 
 	}
 
