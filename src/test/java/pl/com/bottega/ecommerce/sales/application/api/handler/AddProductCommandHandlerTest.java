@@ -12,8 +12,10 @@ import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.ClientData;
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
 import pl.com.bottega.ecommerce.sales.application.api.command.AddProductCommand;
 import pl.com.bottega.ecommerce.sales.domain.productscatalog.Product;
+import pl.com.bottega.ecommerce.sales.domain.productscatalog.ProductType;
 import pl.com.bottega.ecommerce.sales.domain.reservation.Reservation;
 import pl.com.bottega.ecommerce.sales.domain.reservation.Reservation.ReservationStatus;
+import pl.com.bottega.ecommerce.sharedkernel.Money;
 
 public class AddProductCommandHandlerTest {
 
@@ -31,6 +33,7 @@ public class AddProductCommandHandlerTest {
 		Reservation reservation = new Reservation(Id.generate(), ReservationStatus.OPENED, 
 				new ClientData(Id.generate(), "Arleta"), new Date());
 		
+		Product product = new Product(Id.generate(), new Money(5), "sandwich", ProductType.FOOD);
 
 	}
 
