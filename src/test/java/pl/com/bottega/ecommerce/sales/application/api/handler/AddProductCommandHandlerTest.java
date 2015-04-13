@@ -57,7 +57,8 @@ public class AddProductCommandHandlerTest {
 
 	@Before
 	public void setUp() throws Exception {		
-		command = new AddProductCommand(Id.generate(), Id.generate(), 5);
+		command = new AddProductCommandBuilder().build();
+		
 		reservation = new ReservationBuilder()
 						.withClientData(new ClientDataBuilder().withName("Arleta").build())
 						.build();
@@ -65,8 +66,11 @@ public class AddProductCommandHandlerTest {
 		product = new ProductBuilder().build();
 		
 		MockitoAnnotations.initMocks(addProductCommandHandler);
-		Mockito.when(reservationRepository.load(command.getOrderId())).thenReturn(reservation);
-		Mockito.when(productRepository.load(command.getProductId())).thenReturn(product);
+		
+		Mockito.when(reservationRepository.load(command.getOrderId()))
+				.thenReturn(reservation);
+		Mockito.when(productRepository.load(command.getProductId()))
+				.thenReturn(product);
 	}
 
 	@Test
@@ -78,7 +82,8 @@ public class AddProductCommandHandlerTest {
 	@Test
 	public void behaviorTest_reservationMethod_shouldBeRunOneTimes() {	
 		addProductCommandHandler.handle(command);
-		Mockito.verify(reservationRepository, Mockito.times(1)).save(reservation);
+		Mockito.verify(reservationRepository, Mockito.times(1))
+				.save(reservation);
 	}
 
 }
