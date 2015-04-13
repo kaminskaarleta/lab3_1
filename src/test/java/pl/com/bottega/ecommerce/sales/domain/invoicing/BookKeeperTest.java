@@ -21,7 +21,6 @@ import pl.com.bottega.ecommerce.sharedkernel.Money;
 
 public class BookKeeperTest {
 	
-	ClientData clientData;
 	Invoice invoice;
 	InvoiceRequest invoiceRequest;
 	ProductData productData;
@@ -37,11 +36,10 @@ public class BookKeeperTest {
 
 	@Before
 	public void setUp() throws Exception {
-		clientData = new ClientData(Id.generate(), "Arleta");
-		invoice = new Invoice(Id.generate(), clientData);
+		invoice = new Invoice(Id.generate(), new ClientDataBuilder().build());
 		productData = new ProductData(Id.generate(), new Money(2), "kanapka", ProductType.FOOD, new Date());	
 		requestItem = new RequestItem(productData, 0, new Money(2));			
-		invoiceRequest = new InvoiceRequest(clientData);
+		invoiceRequest = new InvoiceRequest(new ClientDataBuilder().build());
 		invoiceRequest.add(requestItem);
 		
 		invoiceFactory = Mockito.mock(InvoiceFactory.class);
@@ -76,7 +74,7 @@ public class BookKeeperTest {
 	public void testState_clientName_shouldBeTheSame() {		
 		Invoice newInvoice = bookKeeper.issuance(invoiceRequest, taxPolicy);
 		
-		assertThat(newInvoice.getClient().getName(), is("Arleta"));
+		assertThat(newInvoice.getClient().getName(), is("default"));
 	}
 	
 	@Test
