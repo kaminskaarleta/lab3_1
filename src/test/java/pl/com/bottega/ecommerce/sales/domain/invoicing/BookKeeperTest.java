@@ -23,7 +23,6 @@ public class BookKeeperTest {
 	
 	Invoice invoice;
 	InvoiceRequest invoiceRequest;
-	RequestItem requestItem;
 	BookKeeper bookKeeper;
 	
 	InvoiceFactory invoiceFactory;
@@ -36,9 +35,8 @@ public class BookKeeperTest {
 	@Before
 	public void setUp() throws Exception {
 		invoice = new Invoice(Id.generate(), new ClientDataBuilder().build());
-		requestItem = new RequestItem(new ProductDataBuilder().build(), 0, new Money(1));			
 		invoiceRequest = new InvoiceRequest(new ClientDataBuilder().build());
-		invoiceRequest.add(requestItem);
+		invoiceRequest.add(new RequestItemBuilder().build());
 		
 		invoiceFactory = Mockito.mock(InvoiceFactory.class);
 		taxPolicy = Mockito.mock(TaxPolicy.class);
@@ -59,7 +57,7 @@ public class BookKeeperTest {
 	
 	@Test
 	public void testBehavior_invoiceWithTwoItem_shouldBeRunTwoTimes() {
-		invoiceRequest.add(requestItem);				
+		invoiceRequest.add(new RequestItemBuilder().build());				
 		Invoice newInvoice = bookKeeper.issuance(invoiceRequest, taxPolicy);
 		
 		Mockito.verify(taxPolicy, Mockito.times(2)).calculateTax(Mockito.any(ProductType.class), Mockito.any(Money.class));
@@ -75,8 +73,8 @@ public class BookKeeperTest {
 	
 	@Test
 	public void testBehavior_createInvoice_shoudBeRunOneTime() {	
-		invoiceRequest.add(requestItem);
-		invoiceRequest.add(requestItem);	
+		invoiceRequest.add(new RequestItemBuilder().build());
+		invoiceRequest.add(new RequestItemBuilder().build());	
 		Invoice newInvoice = bookKeeper.issuance(invoiceRequest, taxPolicy);
 		
 		Mockito.verify(invoiceFactory, Mockito.times(1)).create(invoiceRequest.getClientData());
