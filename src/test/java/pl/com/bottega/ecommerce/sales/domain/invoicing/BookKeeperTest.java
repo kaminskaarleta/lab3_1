@@ -34,15 +34,24 @@ public class BookKeeperTest {
 
 	@Before
 	public void setUp() throws Exception {
-		invoice = new InvoiceBuilder().withClient(new ClientDataBuilder().withName("Arleta").build()).build();
-		invoiceRequest = new InvoiceRequestBuilder().withClient(new ClientDataBuilder().withName("Arleta").build()).build();
+		invoice = new InvoiceBuilder()
+						.withClient(new ClientDataBuilder().withName("Arleta").build())
+						.build();
+		
+		invoiceRequest = new InvoiceRequestBuilder()
+							.withClient(new ClientDataBuilder().withName("Arleta").build())
+							.build();
+		
 		invoiceRequest.add(new RequestItemBuilder().build());
 
 		invoiceFactory = Mockito.mock(InvoiceFactory.class);
 		taxPolicy = Mockito.mock(TaxPolicy.class);
 		
-		Mockito.when(invoiceFactory.create(invoiceRequest.getClientData())).thenReturn(invoice);
-		Mockito.when(taxPolicy.calculateTax(ProductType.STANDARD, new Money(1))).thenReturn(new Tax(new Money(1), "default"));
+		Mockito.when(invoiceFactory.create(invoiceRequest.getClientData()))
+				.thenReturn(invoice);
+		
+		Mockito.when(taxPolicy.calculateTax(ProductType.STANDARD, new Money(1)))
+				.thenReturn(new Tax(new Money(1), "default"));
 		
 		bookKeeper = new BookKeeper(invoiceFactory);
 	}
@@ -60,7 +69,8 @@ public class BookKeeperTest {
 		invoiceRequest.add(new RequestItemBuilder().build());				
 		Invoice newInvoice = bookKeeper.issuance(invoiceRequest, taxPolicy);
 		
-		Mockito.verify(taxPolicy, Mockito.times(2)).calculateTax(Mockito.any(ProductType.class), Mockito.any(Money.class));
+		Mockito.verify(taxPolicy, Mockito.times(2))
+				.calculateTax(Mockito.any(ProductType.class), Mockito.any(Money.class));
 		
 	}
 	
@@ -77,6 +87,7 @@ public class BookKeeperTest {
 		invoiceRequest.add(new RequestItemBuilder().build());	
 		Invoice newInvoice = bookKeeper.issuance(invoiceRequest, taxPolicy);
 		
-		Mockito.verify(invoiceFactory, Mockito.times(1)).create(invoiceRequest.getClientData());
+		Mockito.verify(invoiceFactory, Mockito.times(1))
+				.create(invoiceRequest.getClientData());
 	}
 }
