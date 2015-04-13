@@ -9,7 +9,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -58,7 +57,7 @@ public class AddProductCommandHandlerTest {
 	@Before
 	public void setUp() throws Exception {		
 		command = new AddProductCommand(Id.generate(), Id.generate(), 5);
-		reservation = new Reservation(Id.generate(), ReservationStatus.OPENED, new ClientData(Id.generate(), "Arleta"), new Date());
+		//reservation = new ReservationBuilder().withClientData(new ClientDataBuilder);
 		product = new ProductBuilder().build();
 		
 		MockitoAnnotations.initMocks(addProductCommandHandler);
