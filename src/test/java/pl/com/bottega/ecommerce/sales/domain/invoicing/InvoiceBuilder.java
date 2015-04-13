@@ -1,7 +1,9 @@
 package pl.com.bottega.ecommerce.sales.domain.invoicing;
 
+import GeneralUseBuilders.ClientDataBuilder;
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.ClientData;
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
+import pl.com.bottega.ecommerce.sales.domain.invoicing.Invoice;
 
 public class InvoiceBuilder {
 	private Id id;

@@ -3,7 +3,10 @@ package pl.com.bottega.ecommerce.sales.domain.invoicing;
 import java.util.ArrayList;
 import java.util.List;
 
+import GeneralUseBuilders.ClientDataBuilder;
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.ClientData;
+import pl.com.bottega.ecommerce.sales.domain.invoicing.InvoiceRequest;
+import pl.com.bottega.ecommerce.sales.domain.invoicing.RequestItem;
 
 public class InvoiceRequestBuilder {
 

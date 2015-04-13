@@ -15,6 +15,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import GeneralUseBuilders.ClientDataBuilder;
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.ClientData;
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
 import pl.com.bottega.ecommerce.sales.application.api.command.AddProductCommand;
@@ -57,7 +58,10 @@ public class AddProductCommandHandlerTest {
 	@Before
 	public void setUp() throws Exception {		
 		command = new AddProductCommand(Id.generate(), Id.generate(), 5);
-		//reservation = new ReservationBuilder().withClientData(new ClientDataBuilder);
+		reservation = new ReservationBuilder()
+						.withClientData(new ClientDataBuilder().withName("Arleta").build())
+						.build();
+		
 		product = new ProductBuilder().build();
 		
 		MockitoAnnotations.initMocks(addProductCommandHandler);

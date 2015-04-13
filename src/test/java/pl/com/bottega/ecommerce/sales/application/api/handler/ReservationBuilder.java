@@ -2,9 +2,9 @@ package pl.com.bottega.ecommerce.sales.application.api.handler;
 
 import java.util.Date;
 
+import GeneralUseBuilders.ClientDataBuilder;
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.ClientData;
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
-import pl.com.bottega.ecommerce.sales.domain.invoicing.ClientDataBuilder;
 import pl.com.bottega.ecommerce.sales.domain.reservation.Reservation;
 import pl.com.bottega.ecommerce.sales.domain.reservation.Reservation.ReservationStatus;
 

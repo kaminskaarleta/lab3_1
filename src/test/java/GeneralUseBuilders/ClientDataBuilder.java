@@ -1,4 +1,4 @@
-package pl.com.bottega.ecommerce.sales.domain.invoicing;
+package GeneralUseBuilders;
 
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.ClientData;
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
